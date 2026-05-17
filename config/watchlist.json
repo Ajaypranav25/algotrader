@@ -1,0 +1,32 @@
+[
+  {
+    "symbol": "RELIANCE",
+    "token": "2885",
+    "exchange": "NSE",
+    "lot_size": 1
+  },
+  {
+    "symbol": "INFY",
+    "token": "1594",
+    "exchange": "NSE",
+    "lot_size": 1
+  },
+  {
+    "symbol": "TCS",
+    "token": "11536",
+    "exchange": "NSE",
+    "lot_size": 1
+  },
+  {
+    "symbol": "HDFCBANK",
+    "token": "1333",
+    "exchange": "NSE",
+    "lot_size": 1
+  },
+  {
+    "symbol": "ICICIBANK",
+    "token": "4963",
+    "exchange": "NSE",
+    "lot_size": 1
+  }
+]

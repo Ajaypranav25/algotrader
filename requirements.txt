@@ -1,0 +1,41 @@
+# Core Framework
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+python-dotenv==1.0.1
+pydantic==2.7.3
+pydantic-settings==2.3.0
+
+# Angel One SmartAPI
+smartapi-python==1.4.0
+pyotp==2.9.0
+websocket-client==1.8.0
+logzero==1.7.0
+
+# Google Gemini AI
+google-genai==0.8.0
+
+# Database (SQLAlchemy supports both SQLite and PostgreSQL)
+sqlalchemy==2.0.30
+aiosqlite==0.20.0
+alembic==1.13.1
+
+# Async & Scheduling
+apscheduler==3.10.4
+httpx==0.27.0
+aiohttp==3.9.5
+
+# Security
+cryptography==42.0.8
+passlib==1.7.4
+
+# Data Processing
+pandas==2.2.2
+numpy==1.26.4
+
+# WebSocket for frontend push
+python-socketio==5.11.2
+
+# Utilities
+python-multipart==0.0.9
+pytz==2024.1
+rich==13.7.1          # Better console output
