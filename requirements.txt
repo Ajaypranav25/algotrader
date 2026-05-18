@@ -2,8 +2,8 @@
 fastapi==0.111.0
 uvicorn[standard]==0.30.1
 python-dotenv==1.0.1
-pydantic==2.7.3
-pydantic-settings==2.3.0
+pydantic>=2.9.0
+pydantic-settings>=2.5.0
 
 # Angel One SmartAPI
 smartapi-python==1.4.0
@@ -15,7 +15,7 @@ logzero==1.7.0
 google-genai==0.8.0
 
 # Database (SQLAlchemy supports both SQLite and PostgreSQL)
-sqlalchemy==2.0.30
+sqlalchemy>=2.0.35
 aiosqlite==0.20.0
 alembic==1.13.1
 
@@ -29,7 +29,7 @@ cryptography==42.0.8
 passlib==1.7.4
 
 # Data Processing
-pandas==2.2.2
+pandas>=2.2.3
 numpy==1.26.4
 
 # WebSocket for frontend push

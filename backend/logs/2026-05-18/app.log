@@ -1,0 +1,1 @@
+[E 260518 23:22:47 smartWebSocketV2:212] Error occurred during subscribe: 'NoneType' object has no attribute 'send'

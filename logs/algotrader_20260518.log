@@ -1,0 +1,166 @@
+2026-05-18 23:10:25 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:10:25 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:10:25 | [31mERROR[0m | gemini_engine        | Gemini initialization failed: API key must be set when using the Google AI API.
+2026-05-18 23:10:25 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:10:25 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:10:25 | [33mWARNING[0m | main                 | Angel One credentials not configured in .env
+2026-05-18 23:12:12 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:12:12 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:14:08 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:14:08 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:14:08 | [31mERROR[0m | gemini_engine        | Gemini initialization failed: API key must be set when using the Google AI API.
+2026-05-18 23:14:08 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:14:08 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:14:08 | [33mWARNING[0m | main                 | Angel One credentials not configured in .env
+2026-05-18 23:14:32 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:14:32 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:14:44 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:14:44 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:14:44 | [31mERROR[0m | gemini_engine        | Gemini initialization failed: API key must be set when using the Google AI API.
+2026-05-18 23:14:44 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:14:44 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:14:44 | [33mWARNING[0m | main                 | Angel One credentials not configured in .env
+2026-05-18 23:16:20 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:16:20 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:16:20 | [31mERROR[0m | gemini_engine        | Gemini initialization failed: API key must be set when using the Google AI API.
+2026-05-18 23:16:20 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:16:20 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:16:20 | [33mWARNING[0m | main                 | Angel One credentials not configured in .env
+2026-05-18 23:18:11 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:18:11 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:18:11 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:18:11 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:18:11 | [31mERROR[0m | gemini_engine        | Gemini initialization failed: API key must be set when using the Google AI API.
+2026-05-18 23:18:11 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:18:11 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:18:11 | [33mWARNING[0m | main                 | Angel One credentials not configured in .env
+2026-05-18 23:18:11 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:18:11 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:20:20 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:20:20 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-18 23:20:20 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:22:47 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:22:47 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:22:47 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:22:47 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:22:47 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:22:47 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:22:47 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:22:47 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:22:47 | DEBUG    | angel_one            | Generated TOTP: 604058
+2026-05-18 23:22:47 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:22:47 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:22:47 | [31mERROR[0m | angel_one            | WebSocket thread crashed: 'NoneType' object has no attribute 'send'
+Traceback (most recent call last):
+  File "C:\random\vpeak\algotrader\backend\services\angel_one.py", line 255, in _run
+    sws.subscribe(correlation_id, mode=1, token_list=token_list)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ajayp\AppData\Roaming\Python\Python313\site-packages\SmartApi\smartWebSocketV2.py", line 213, in subscribe
+    raise e
+  File "C:\Users\ajayp\AppData\Roaming\Python\Python313\site-packages\SmartApi\smartWebSocketV2.py", line 208, in subscribe
+    self.wsapp.send(json.dumps(request_data))
+    ^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'send'
+2026-05-18 23:22:47 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:22:47 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:26:36 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:26:36 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-18 23:26:36 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:26:39 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:26:39 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:26:39 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:26:39 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:26:39 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:26:39 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:26:39 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:26:39 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:26:39 | DEBUG    | angel_one            | Generated TOTP: 511906
+2026-05-18 23:26:40 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:26:40 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:26:40 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:26:40 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:26:42 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:26:42 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:26:42 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:26:42 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:26:42 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:26:42 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:26:42 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:26:42 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:26:42 | DEBUG    | angel_one            | Generated TOTP: 511906
+2026-05-18 23:26:43 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:26:43 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:26:43 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:26:43 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:26:43 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-18 23:27:04 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:27:04 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-18 23:27:04 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:27:14 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:27:14 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:27:14 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:27:14 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:27:14 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:27:14 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:27:14 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:27:14 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:27:14 | DEBUG    | angel_one            | Generated TOTP: 503544
+2026-05-18 23:27:14 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:27:14 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:27:15 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:27:15 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:27:15 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-18 23:37:11 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:37:11 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-18 23:37:11 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:37:14 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:37:14 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:37:14 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:37:14 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:37:14 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:37:14 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:37:14 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:37:14 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:37:14 | DEBUG    | angel_one            | Generated TOTP: 031206
+2026-05-18 23:37:15 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:37:15 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:37:15 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:37:15 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:37:15 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-18 23:50:08 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:50:08 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-18 23:50:08 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:51:02 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:51:02 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:51:02 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:51:02 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:51:02 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:51:02 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:51:02 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:51:02 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:51:02 | DEBUG    | angel_one            | Generated TOTP: 997872
+2026-05-18 23:51:03 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:51:03 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:51:03 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:51:03 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:51:03 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-18 23:51:10 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-18 23:51:10 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-18 23:51:10 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-18 23:51:23 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:51:23 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-18 23:51:23 | [32mINFO[0m | main                 | ============================================================
+2026-05-18 23:51:23 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-18 23:51:23 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-18 23:51:23 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-18 23:51:23 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-18 23:51:23 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-18 23:51:23 | DEBUG    | angel_one            | Generated TOTP: 997872
+2026-05-18 23:51:24 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-18 23:51:24 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-18 23:51:24 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-18 23:51:24 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-18 23:51:24 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 00:15:03 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 00:15:03 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 00:15:03 | [32mINFO[0m | main                 | Shutdown complete.

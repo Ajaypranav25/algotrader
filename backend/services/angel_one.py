@@ -252,8 +252,11 @@ class AngelOneService:
                 sws.on_data = on_data
                 sws.on_error = on_error
                 sws.on_close = on_close
-                sws.subscribe(correlation_id, mode=1, token_list=token_list)
                 sws.connect()
+                import time; time.sleep(2)
+                sws.subscribe(correlation_id, mode=1, token_list=token_list)
+                
+                
             except Exception as e:
                 logger.error(f"WebSocket thread crashed: {e}", exc_info=True)
                 self._ws_active = False
