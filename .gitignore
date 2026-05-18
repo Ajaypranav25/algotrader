@@ -1,2 +1,6 @@
 .env
 .env.example
+node_modules/
+dist/
+*.pyc
+__pycache__/
