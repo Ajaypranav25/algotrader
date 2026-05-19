@@ -133,7 +133,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],           # Tighten this in production
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Allows your frontend server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -142,10 +142,10 @@ app.add_middleware(
 app.include_router(router, prefix="/api/v1")
 
 
-@app.websocket("/ws")
+@app.websocket("/api/websocket")
 async def ws_handler(websocket: WebSocket):
+    # This bypasses strict APIRouter default origin checks for local development
     await websocket_endpoint(websocket)
-
 
 @app.get("/", tags=["Health"])
 async def health():

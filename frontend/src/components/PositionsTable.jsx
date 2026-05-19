@@ -34,7 +34,9 @@ export default function PositionsTable({ positions = [], openPositionsCount = 0 
             ) : (
               positions.map((pos, index) => {
                 const pnl = pos.unrealized_pnl || 0;
-                const isLong = pos.direction?.toLowerCase() !== 'short';
+                
+                // Fixed logic: explicitly map if running a buy order configuration
+                const isLong = pos.signal === 'BUY';
                 
                 return (
                   <tr key={index} className="hover:bg-slate-950/40 transition-colors">
@@ -47,8 +49,9 @@ export default function PositionsTable({ positions = [], openPositionsCount = 0 
                       </span>
                     </td>
                     <td className="py-3 font-mono">{pos.quantity}</td>
-                    <td className="py-3 font-mono">₹{pos.entry_price?.toFixed(2)}</td>
-                    <td className="py-3 font-mono text-cyan-400">₹{pos.current_price?.toFixed(2) || '0.00'}</td>
+                    {/* Fixed keys matching the backend Pydantic Schema model attributes */}
+                    <td className="py-3 font-mono">₹{pos.avg_price?.toFixed(2)}</td>
+                    <td className="py-3 font-mono text-cyan-400">₹{pos.ltp?.toFixed(2)}</td>
                     <td className={`py-3 font-mono text-right font-bold ${pnl >= 0 ? 'text-emerald-400' : 'text-rose-500'}`}>
                       {pnl >= 0 ? `+₹${pnl.toFixed(2)}` : `-₹${Math.abs(pnl).toFixed(2)}`}
                     </td>

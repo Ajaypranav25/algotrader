@@ -10,7 +10,7 @@ export default function KillSwitch({ backendUrl = 'http://localhost:8000' }) {
 
     setLoading(true);
     try {
-      const response = await fetch(`${backendUrl}/api${endpoint}`, {
+      const response = await fetch(`${backendUrl}/api/v1${endpoint}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
       });

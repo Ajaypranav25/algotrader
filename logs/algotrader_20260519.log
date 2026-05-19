@@ -15,3 +15,261 @@
 2026-05-19 00:18:40 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
 2026-05-19 00:18:40 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
 2026-05-19 00:18:40 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:03:15 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:03:15 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:03:15 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:03:15 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:03:15 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:03:15 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:03:15 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:03:15 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:03:15 | DEBUG    | angel_one            | Generated TOTP: 666176
+2026-05-19 14:03:16 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:03:16 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:03:16 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:03:16 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:03:16 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 14:03:26 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 14:03:26 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:03:26 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:03:26 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:03:26 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:03:26 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:06:26 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:06:26 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:06:26 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:06:30 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:06:30 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:06:30 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:06:30 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:06:30 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:06:30 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:06:30 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:06:30 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:06:30 | DEBUG    | angel_one            | Generated TOTP: 648001
+2026-05-19 14:06:31 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:06:31 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:06:31 | [31mERROR[0m | angel_one            | WebSocket thread crashed: name 'risk_manager' is not defined
+Traceback (most recent call last):
+  File "C:\random\vpeak\algotrader\backend\services\angel_one.py", line 257, in _run
+    if risk_manager.is_market_open():
+       ^^^^^^^^^^^^
+NameError: name 'risk_manager' is not defined
+2026-05-19 14:06:31 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:06:31 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:07:46 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:07:46 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:07:46 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:07:57 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:07:57 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:07:57 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:07:57 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:07:57 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:07:57 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:07:57 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:07:57 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:07:57 | DEBUG    | angel_one            | Generated TOTP: 202912
+2026-05-19 14:07:58 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:07:58 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:07:58 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-19 14:07:58 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:07:58 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:07:58 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 14:08:08 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 14:08:08 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:08:08 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:08:08 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:08:08 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:08:08 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:08:37 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:08:37 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:08:37 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:14:26 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:14:26 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:14:26 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:14:26 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:14:26 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:14:26 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:14:26 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:14:26 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:14:26 | DEBUG    | angel_one            | Generated TOTP: 783959
+2026-05-19 14:14:27 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:14:27 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:14:27 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-19 14:14:27 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:14:27 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:14:27 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 14:14:37 | [32mINFO[0m | angel_one            | ✅ WebSocket connected — streaming live ticks
+2026-05-19 14:14:37 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:14:37 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:14:37 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:14:37 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:14:37 | [31mERROR[0m | angel_one            | WebSocket error: Connection closed
+2026-05-19 14:16:48 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:16:48 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:16:48 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:16:51 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:16:51 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:16:51 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:16:51 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:16:51 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:16:51 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:16:51 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:16:51 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:16:51 | DEBUG    | angel_one            | Generated TOTP: 872678
+2026-05-19 14:16:51 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:16:51 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:16:51 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-19 14:16:51 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:16:51 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:16:51 | [32mINFO[0m | angel_one            | ✅ WebSocket connection opened — authenticating channel...
+2026-05-19 14:16:52 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-19 14:16:52 | [31mERROR[0m | angel_one            | Subscription injection failed: 'WebSocketApp' object has no attribute 'subscribe'
+2026-05-19 14:18:26 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:18:26 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:18:26 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:18:29 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:18:29 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:18:29 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:18:29 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:18:29 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:18:29 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:18:29 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:18:29 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:18:29 | DEBUG    | angel_one            | Generated TOTP: 067234
+2026-05-19 14:18:29 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:18:29 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:18:29 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-19 14:18:29 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:18:29 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:18:29 | [32mINFO[0m | angel_one            | ✅ WebSocket connection opened — authenticating channel...
+2026-05-19 14:18:30 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-19 14:18:30 | [32mINFO[0m | angel_one            | ✅ Watchlist tokens subscribed successfully.
+2026-05-19 14:48:58 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:48:58 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:48:58 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:49:00 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:49:00 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:49:00 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:49:00 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:49:00 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:49:00 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:49:00 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:49:00 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:49:00 | DEBUG    | angel_one            | Generated TOTP: 693873
+2026-05-19 14:49:04 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:49:04 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:49:04 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-19 14:49:04 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:49:04 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:49:04 | [32mINFO[0m | angel_one            | ✅ WebSocket connection opened — authenticating channel...
+2026-05-19 14:49:05 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-19 14:49:05 | [32mINFO[0m | angel_one            | ✅ Watchlist tokens subscribed successfully.
+2026-05-19 14:53:13 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 14:53:36 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 14:53:52 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 14:54:04 | [32mINFO[0m | trading_loop         | ─── Cycle #1 [14:54:04] ───
+2026-05-19 14:54:04 | DEBUG    | trading_loop         | Processing RELIANCE...
+2026-05-19 14:54:05 | [33mWARNING[0m | angel_one            | getCandleData returned no data for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 14:54:05 | [33mWARNING[0m | trading_loop         | No candle data for RELIANCE.
+2026-05-19 14:54:06 | DEBUG    | trading_loop         | Processing INFY...
+2026-05-19 14:54:07 | [33mWARNING[0m | angel_one            | getCandleData returned no data for INFY: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 14:54:07 | [33mWARNING[0m | trading_loop         | No candle data for INFY.
+2026-05-19 14:54:09 | DEBUG    | trading_loop         | Processing TCS...
+2026-05-19 14:54:10 | [33mWARNING[0m | angel_one            | getCandleData returned no data for TCS: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 14:54:10 | [33mWARNING[0m | trading_loop         | No candle data for TCS.
+2026-05-19 14:54:11 | DEBUG    | trading_loop         | Processing HDFCBANK...
+2026-05-19 14:54:12 | [33mWARNING[0m | angel_one            | getCandleData returned no data for HDFCBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 14:54:12 | [33mWARNING[0m | trading_loop         | No candle data for HDFCBANK.
+2026-05-19 14:54:14 | DEBUG    | trading_loop         | Processing ICICIBANK...
+2026-05-19 14:54:14 | [33mWARNING[0m | angel_one            | getCandleData returned no data for ICICIBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 14:54:14 | [33mWARNING[0m | trading_loop         | No candle data for ICICIBANK.
+2026-05-19 14:54:16 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 14:58:23 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-19 14:58:23 | [32mINFO[0m | trading_loop         | ⏹️  Trading loop stopped.
+2026-05-19 14:58:23 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-19 14:58:25 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:58:25 | [32mINFO[0m | main                 |   AlgoTrader starting | Mode: PAPER 🟡
+2026-05-19 14:58:25 | [32mINFO[0m | main                 | ============================================================
+2026-05-19 14:58:25 | [32mINFO[0m | main                 | ✅ Database initialized
+2026-05-19 14:58:25 | [32mINFO[0m | gemini_engine        | ✅ Gemini client initialized | Model: gemini-2.5-flash
+2026-05-19 14:58:25 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-19 14:58:25 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-19 14:58:25 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-19 14:58:25 | DEBUG    | angel_one            | Generated TOTP: 479209
+2026-05-19 14:58:25 | [32mINFO[0m | angel_one            | ✅ Angel One login successful | Client: AACH867986 | Mode: PAPER 🟡
+2026-05-19 14:58:25 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-19 14:58:25 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-19 14:58:25 | [32mINFO[0m | main                 | ✅ Scheduler started | Analysis every 300s
+2026-05-19 14:58:25 | [32mINFO[0m | main                 | ⚠️  Paper trading: ENABLED
+2026-05-19 14:58:27 | [32mINFO[0m | angel_one            | ✅ WebSocket connection opened — authenticating channel...
+2026-05-19 14:58:28 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-19 14:58:28 | [32mINFO[0m | angel_one            | ✅ Watchlist tokens subscribed successfully.
+2026-05-19 14:58:45 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:03:25 | [32mINFO[0m | trading_loop         | ─── Cycle #1 [15:03:25] ───
+2026-05-19 15:03:25 | DEBUG    | trading_loop         | Processing RELIANCE...
+2026-05-19 15:03:27 | [33mWARNING[0m | angel_one            | getCandleData returned no data for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:03:27 | [33mWARNING[0m | trading_loop         | No candle data for RELIANCE.
+2026-05-19 15:03:28 | DEBUG    | trading_loop         | Processing INFY...
+2026-05-19 15:03:29 | [33mWARNING[0m | angel_one            | getCandleData returned no data for INFY: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:03:29 | [33mWARNING[0m | trading_loop         | No candle data for INFY.
+2026-05-19 15:03:30 | DEBUG    | trading_loop         | Processing TCS...
+2026-05-19 15:03:31 | [33mWARNING[0m | angel_one            | getCandleData returned no data for TCS: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:03:31 | [33mWARNING[0m | trading_loop         | No candle data for TCS.
+2026-05-19 15:03:33 | DEBUG    | trading_loop         | Processing HDFCBANK...
+2026-05-19 15:03:33 | [33mWARNING[0m | angel_one            | getCandleData returned no data for HDFCBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:03:33 | [33mWARNING[0m | trading_loop         | No candle data for HDFCBANK.
+2026-05-19 15:03:35 | DEBUG    | trading_loop         | Processing ICICIBANK...
+2026-05-19 15:03:36 | [33mWARNING[0m | angel_one            | getCandleData returned no data for ICICIBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:03:36 | [33mWARNING[0m | trading_loop         | No candle data for ICICIBANK.
+2026-05-19 15:03:44 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:03:52 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:08:25 | [32mINFO[0m | trading_loop         | ─── Cycle #2 [15:08:25] ───
+2026-05-19 15:08:25 | DEBUG    | trading_loop         | Processing RELIANCE...
+2026-05-19 15:08:26 | [33mWARNING[0m | angel_one            | getCandleData returned no data for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:08:26 | [33mWARNING[0m | trading_loop         | No candle data for RELIANCE.
+2026-05-19 15:08:28 | DEBUG    | trading_loop         | Processing INFY...
+2026-05-19 15:08:29 | [33mWARNING[0m | angel_one            | getCandleData returned no data for INFY: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:08:29 | [33mWARNING[0m | trading_loop         | No candle data for INFY.
+2026-05-19 15:08:30 | DEBUG    | trading_loop         | Processing TCS...
+2026-05-19 15:08:31 | [33mWARNING[0m | angel_one            | getCandleData returned no data for TCS: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:08:31 | [33mWARNING[0m | trading_loop         | No candle data for TCS.
+2026-05-19 15:08:33 | DEBUG    | trading_loop         | Processing HDFCBANK...
+2026-05-19 15:08:34 | [33mWARNING[0m | angel_one            | getCandleData returned no data for HDFCBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:08:34 | [33mWARNING[0m | trading_loop         | No candle data for HDFCBANK.
+2026-05-19 15:08:35 | DEBUG    | trading_loop         | Processing ICICIBANK...
+2026-05-19 15:08:36 | [33mWARNING[0m | angel_one            | getCandleData returned no data for ICICIBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:08:36 | [33mWARNING[0m | trading_loop         | No candle data for ICICIBANK.
+2026-05-19 15:13:25 | [32mINFO[0m | trading_loop         | ─── Cycle #3 [15:13:25] ───
+2026-05-19 15:13:25 | DEBUG    | trading_loop         | Processing RELIANCE...
+2026-05-19 15:13:26 | [33mWARNING[0m | angel_one            | getCandleData returned no data for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:13:26 | [33mWARNING[0m | trading_loop         | No candle data for RELIANCE.
+2026-05-19 15:13:28 | DEBUG    | trading_loop         | Processing INFY...
+2026-05-19 15:13:29 | [33mWARNING[0m | angel_one            | getCandleData returned no data for INFY: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:13:29 | [33mWARNING[0m | trading_loop         | No candle data for INFY.
+2026-05-19 15:13:30 | DEBUG    | trading_loop         | Processing TCS...
+2026-05-19 15:13:31 | [33mWARNING[0m | angel_one            | getCandleData returned no data for TCS: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:13:31 | [33mWARNING[0m | trading_loop         | No candle data for TCS.
+2026-05-19 15:13:33 | DEBUG    | trading_loop         | Processing HDFCBANK...
+2026-05-19 15:13:34 | [33mWARNING[0m | angel_one            | getCandleData returned no data for HDFCBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:13:34 | [33mWARNING[0m | trading_loop         | No candle data for HDFCBANK.
+2026-05-19 15:13:36 | DEBUG    | trading_loop         | Processing ICICIBANK...
+2026-05-19 15:13:37 | [33mWARNING[0m | angel_one            | getCandleData returned no data for ICICIBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-19 15:13:37 | [33mWARNING[0m | trading_loop         | No candle data for ICICIBANK.
+2026-05-19 15:18:25 | DEBUG    | trading_loop         | Market closed — skipping cycle.
+2026-05-19 15:18:37 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:20:51 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:06 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:07 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:08 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:08 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:08 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:08 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:08 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:08 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:09 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:09 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:09 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:21:53 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:23:20 | [32mINFO[0m | trading_loop         | ▶️  Trading loop started.
+2026-05-19 15:23:25 | DEBUG    | trading_loop         | Market closed — skipping cycle.

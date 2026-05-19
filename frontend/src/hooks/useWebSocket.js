@@ -59,14 +59,14 @@ export default function useWebSocket(url) {
             case 'trade_opened':
               // Expects data to be position info. Track log and update array.
               setTradeLogs(prev => [
-                `🟢 [TRADE OPENED] Bought ${data.symbol} Qty: ${data.quantity} @ ${data.entry_price}`, 
+                `🟢 [TRADE OPENED] Bought ${data.symbol} Qty: ${data.qty} @ ${data.entry_price}`, 
                 ...prev.slice(0, 49)
               ]);
               break;
 
             case 'trade_closed':
               setTradeLogs(prev => [
-                `🔴 [TRADE CLOSED] Closed ${data.symbol} Qty: ${data.quantity} @ ${data.exit_price} | PnL: ${data.realized_pnl}`, 
+                `🔴 [TRADE CLOSED] Closed ${data.symbol} Qty: ${data.qty} @ ${data.entry_price} | PnL: ${data.pnl}`, 
                 ...prev.slice(0, 49)
               ]);
               break;

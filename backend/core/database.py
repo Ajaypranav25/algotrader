@@ -1,7 +1,7 @@
 """
 core/database.py — SQLAlchemy async ORM setup with SQLite/PostgreSQL support.
 """
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional, AsyncGenerator
 
 from sqlalchemy import (
@@ -64,7 +64,7 @@ class Trade(Base):
     is_paper: Mapped[bool] = mapped_column(Boolean, default=True)
     order_id: Mapped[Optional[str]] = mapped_column(String(50), nullable=True)  # Angel One order ID
     gemini_rationale: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
     closed_at: Mapped[Optional[datetime]] = mapped_column(DateTime, nullable=True)
 
 
@@ -81,7 +81,7 @@ class GeminiLog(Base):
     raw_response: Mapped[str] = mapped_column(Text, nullable=False)
     candles_sent: Mapped[int] = mapped_column(Integer, default=0)
     latency_ms: Mapped[int] = mapped_column(Integer, default=0)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 
 class DailyPnL(Base):
@@ -107,7 +107,7 @@ class SessionLog(Base):
     refresh_token: Mapped[str] = mapped_column(Text, nullable=False)
     feed_token: Mapped[str] = mapped_column(Text, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=lambda: datetime.now(timezone.utc))
 
 
 # ── Helpers ──────────────────────────────────────────────────────────────────

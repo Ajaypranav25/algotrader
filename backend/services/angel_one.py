@@ -4,13 +4,14 @@ services/angel_one.py — Angel One SmartAPI integration.
 Handles:
   - Automated daily login with TOTP (no manual 2FA)
   - Historical candle data fetching
-  - Live WebSocket tick data
+  - Live WebSocket tick data with non-blocking deferred subscription handling
   - Order placement (wrapped with paper-trading guard)
   - Portfolio / position fetching
 """
 import json
 import asyncio
 import threading
+import time
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 
@@ -21,6 +22,9 @@ from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from core.config import get_settings
 from models.schemas import Candle, WatchlistItem, OrderRequest, OrderResponse
 from utils.logger import get_logger
+
+# Import structural check handlers to verify market state configurations
+from services.risk_manager import risk_manager
 
 settings = get_settings()
 logger = get_logger("angel_one")
@@ -220,8 +224,7 @@ class AngelOneService:
             try:
                 if isinstance(message, bytes):
                     import struct
-                    # Parse binary tick — Angel One SmartWebSocketV2 binary format
-                    # Simplified: extract token and LTP
+                    # Parse binary tick format
                     token = str(int.from_bytes(message[27:31], "little"))
                     ltp = struct.unpack("<f", message[43:47])[0]
                     self._tick_data[token] = round(ltp, 2)
@@ -236,26 +239,47 @@ class AngelOneService:
             logger.warning("WebSocket connection closed.")
             self._ws_active = False
 
+        # Placeholder scope descriptor so the nested functions can capture the reference parent
+        sws_container = {"instance": None}
+
         def on_open(wsapp):
-            logger.info("✅ WebSocket connected — streaming live ticks")
+            logger.info("✅ WebSocket connection opened — authenticating channel...")
             self._ws_active = True
+            
+            # Defer subscription payload invocation to bypass proxy handshake collisions
+            def delayed_subscribe():
+                time.sleep(1)
+                logger.info(f"Sending subscription payload for {len(token_list)} tokens...")
+                try:
+                    if sws_container["instance"]:
+                        sws_container["instance"].subscribe(correlation_id, mode=1, token_list=token_list)
+                        logger.info("✅ Watchlist tokens subscribed successfully.")
+                    else:
+                        logger.error("Subscription aborted: SmartWebSocketV2 instance reference missing.")
+                except Exception as e:
+                    logger.error(f"Subscription injection failed: {e}")
+
+            threading.Thread(target=delayed_subscribe, daemon=True).start()
 
         def _run():
             try:
-                sws = SmartWebSocketV2(
+                sws_container["instance"] = SmartWebSocketV2(
                     auth_token=self.jwt_token,
                     api_key=settings.angel_api_key,
                     client_code=settings.angel_client_id,
                     feed_token=self.feed_token,
                 )
-                sws.on_open = on_open
-                sws.on_data = on_data
-                sws.on_error = on_error
-                sws.on_close = on_close
-                sws.connect()
-                import time; time.sleep(2)
-                sws.subscribe(correlation_id, mode=1, token_list=token_list)
                 
+                sws_container["instance"].on_open = on_open
+                sws_container["instance"].on_data = on_data
+                sws_container["instance"].on_error = on_error
+                sws_container["instance"].on_close = on_close
+                
+                if risk_manager.is_market_open():
+                    logger.info("Market is open. Initializing live tick WebSocket stream...")
+                    sws_container["instance"].connect()
+                else:
+                    logger.warning("⚠️ Market is closed. Skipping live WebSocket stream setup.")
                 
             except Exception as e:
                 logger.error(f"WebSocket thread crashed: {e}", exc_info=True)

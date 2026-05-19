@@ -17,7 +17,7 @@ function App() {
     positions, 
     tradeLogs, 
     geminiSignal 
-  } = useWebSocket('ws://localhost:8000/api/websocket');
+  } = useWebSocket('ws://localhost:8000/ws');
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans p-4">
