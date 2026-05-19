@@ -215,6 +215,7 @@ class RiskManager:
                 stop_loss=pos.current_sl,
                 target_price=pos.target_price,
                 trailing_sl=pos.current_sl,
+                signal=pos.signal,
             ))
         return result
 

@@ -7,6 +7,7 @@ Handles:
   - Live WebSocket tick data with non-blocking deferred subscription handling
   - Order placement (wrapped with paper-trading guard)
   - Portfolio / position fetching
+  - Token verification against live scrip master
 """
 import json
 import asyncio
@@ -15,6 +16,7 @@ import time
 from datetime import datetime, timedelta
 from typing import Optional, List, Dict, Any
 
+import httpx
 import pyotp
 from SmartApi import SmartConnect
 from SmartApi.smartWebSocketV2 import SmartWebSocketV2
@@ -22,9 +24,6 @@ from SmartApi.smartWebSocketV2 import SmartWebSocketV2
 from core.config import get_settings
 from models.schemas import Candle, WatchlistItem, OrderRequest, OrderResponse
 from utils.logger import get_logger
-
-# Import structural check handlers to verify market state configurations
-from services.risk_manager import risk_manager
 
 settings = get_settings()
 logger = get_logger("angel_one")
@@ -58,7 +57,6 @@ class AngelOneService:
         try:
             logger.info("Initiating Angel One SmartAPI login...")
 
-            # Generate TOTP dynamically — no manual intervention needed
             totp_code = pyotp.TOTP(settings.angel_totp_secret).now()
             logger.debug(f"Generated TOTP: {totp_code}")
 
@@ -75,13 +73,13 @@ class AngelOneService:
                 self.is_connected = False
                 return False
 
-            self.jwt_token = data["data"]["jwtToken"]
+            self.jwt_token    = data["data"]["jwtToken"]
             self.refresh_token = data["data"]["refreshToken"]
-            self.feed_token = self.smart.getfeedToken()
+            self.feed_token   = self.smart.getfeedToken()
 
             self.smart.setAccessToken(self.jwt_token)
             self.is_connected = True
-            self._last_login = datetime.now()
+            self._last_login  = datetime.now()
 
             logger.info(
                 f"✅ Angel One login successful | Client: {settings.angel_client_id} | "
@@ -126,45 +124,103 @@ class AngelOneService:
         """
         Fetch OHLCV candle data for a given symbol.
 
+        Angel One API response structure:
+          Success → {"status": True,  "message": "SUCCESS", "data": [[ts,o,h,l,c,v], ...]}
+          Error   → {"status": False, "message": "...",     "errorcode": "AG8001"}
+
         Intervals: ONE_MINUTE, THREE_MINUTE, FIVE_MINUTE, TEN_MINUTE,
                    FIFTEEN_MINUTE, THIRTY_MINUTE, ONE_HOUR, ONE_DAY
         """
         self.ensure_connected()
 
-        to_date = datetime.now()
+        to_date   = datetime.now()
         from_date = to_date - timedelta(days=lookback_days)
 
         params = {
-            "exchange": exchange,
+            "exchange":    exchange,
             "symboltoken": token,
-            "interval": interval,
-            "fromdate": from_date.strftime("%Y-%m-%d %H:%M"),
-            "todate": to_date.strftime("%Y-%m-%d %H:%M"),
+            # API requires exactly "yyyy-MM-dd HH:mm" — 24-hour clock
+            "fromdate":    from_date.strftime("%Y-%m-%d %H:%M"),
+            "todate":      to_date.strftime("%Y-%m-%d %H:%M"),
+            "interval":    interval,
         }
+
+        logger.debug(f"getCandleData params for {symbol}: {params}")
 
         try:
             resp = await asyncio.to_thread(self.smart.getCandleData, params)
-            if not resp.get("status"):
-                logger.warning(f"getCandleData returned no data for {symbol}: {resp}")
+
+            logger.debug(f"getCandleData raw response for {symbol}: {resp}")
+
+            # The SmartAPI Python SDK normalises both success and error
+            # responses to use "status" (bool). Guard against string "true"
+            # returned by some older SDK builds as well.
+            status_ok = (
+                resp.get("status") is True
+                or str(resp.get("status", "")).lower() == "true"
+                or resp.get("success") is True          # fallback for older SDK
+            )
+
+            if not status_ok:
+                error_code = (
+                    resp.get("errorcode")
+                    or resp.get("errorCode")
+                    or "unknown"
+                )
+                message = resp.get("message", "No message returned")
+
+                if error_code in ("AG8001", "AB8050"):
+                    logger.error(
+                        f"[{symbol}] Invalid token ({error_code}): {message}\n"
+                        f"  → Token used     : {token!r}\n"
+                        f"  → Likely fix 1   : Enable 'Historical Data' in your Angel One app\n"
+                        f"                     https://smartapi.angelbroking.com\n"
+                        f"  → Likely fix 2   : Token is stale — run verify_tokens() to check\n"
+                        f"                     against the live scrip master."
+                    )
+                elif error_code in ("AB1004", "AB1005"):
+                    logger.error(
+                        f"[{symbol}] Session expired ({error_code}). "
+                        "Calling refresh_session()..."
+                    )
+                    await self.refresh_session()
+                else:
+                    logger.warning(
+                        f"getCandleData failed for {symbol}: "
+                        f"code={error_code!r}  message={message!r}"
+                    )
                 return []
 
-            candles = []
-            for row in resp.get("data", []):
+            raw_data = resp.get("data") or []
+            if not raw_data:
+                logger.warning(
+                    f"No candle records returned for {symbol} (empty data array). "
+                    "Market may be closed or the date range has no trading data."
+                )
+                return []
+
+            candles: List[Candle] = []
+            for row in raw_data:
                 # row = [timestamp, open, high, low, close, volume]
-                candles.append(Candle(
-                    timestamp=row[0],
-                    open=float(row[1]),
-                    high=float(row[2]),
-                    low=float(row[3]),
-                    close=float(row[4]),
-                    volume=int(row[5]),
-                ))
+                try:
+                    candles.append(Candle(
+                        timestamp = str(row[0]),
+                        open      = float(row[1]),
+                        high      = float(row[2]),
+                        low       = float(row[3]),
+                        close     = float(row[4]),
+                        volume    = int(row[5]),
+                    ))
+                except (IndexError, ValueError, TypeError) as e:
+                    logger.warning(
+                        f"Skipping malformed candle row for {symbol}: {row} — {e}"
+                    )
 
             logger.debug(f"Fetched {len(candles)} candles for {symbol} ({interval})")
             return candles
 
         except Exception as e:
-            logger.error(f"Error fetching candles for {symbol}: {e}", exc_info=True)
+            logger.error(f"Exception in get_candles for {symbol}: {e}", exc_info=True)
             return []
 
     async def get_ltp(self, exchange: str, symbol: str, token: str) -> Optional[float]:
@@ -202,6 +258,100 @@ class AngelOneService:
             logger.error(f"RMS limit fetch failed: {e}")
         return 0.0
 
+    # ── Token Verification ────────────────────────────────────────────────────
+
+    async def verify_tokens(self, watchlist: Optional[List[WatchlistItem]] = None) -> None:
+        """
+        Downloads the live Angel One scrip master and verifies every token
+        in the supplied watchlist (or config/watchlist.json).
+
+        Run once from the command line to diagnose AG8001 errors:
+
+            cd backend
+            python -c "
+            import asyncio
+            from services.angel_one import angel_service
+            asyncio.run(angel_service.verify_tokens())
+            "
+        """
+        import json
+        from pathlib import Path
+
+        SCRIP_MASTER_URL = (
+            "https://margincalculator.angelbroking.com"
+            "/OpenAPI_File/files/OpenAPIScripMaster.json"
+        )
+
+        # Fall back to watchlist.json if nothing is passed in
+        if not watchlist:
+            config_path = Path("../config/watchlist.json")
+            if config_path.exists():
+                with open(config_path) as f:
+                    raw = json.load(f)
+                watchlist = [WatchlistItem(**item) for item in raw]
+            else:
+                logger.error("verify_tokens: no watchlist supplied and watchlist.json not found.")
+                return
+
+        logger.info("Downloading live scrip master from Angel One…")
+        try:
+            async with httpx.AsyncClient(timeout=30) as client:
+                r = await client.get(SCRIP_MASTER_URL)
+                r.raise_for_status()
+                master: list = r.json()
+        except Exception as e:
+            logger.error(f"Failed to download scrip master: {e}")
+            return
+
+        # Build lookup: token -> record
+        token_map: Dict[str, dict] = {
+            str(entry["token"]): entry for entry in master
+        }
+
+        print("\n" + "=" * 65)
+        print("  ANGEL ONE TOKEN VERIFICATION REPORT")
+        print("=" * 65)
+
+        all_ok = True
+        for item in watchlist:
+            record = token_map.get(str(item.token))
+            if not record:
+                print(
+                    f"  ❌  {item.symbol:12} token={item.token!r:8} "
+                    f"NOT FOUND in scrip master"
+                )
+                all_ok = False
+                continue
+
+            master_sym  = record.get("symbol",   "?")
+            master_exch = record.get("exch_seg", "?")
+            match = (
+                master_sym.upper().startswith(item.symbol.upper())
+                and master_exch.upper() == item.exchange.upper()
+            )
+            status = "✅" if match else "⚠️  MISMATCH"
+            print(
+                f"  {status}  {item.symbol:12} token={item.token!r:8} "
+                f"→ master=({master_sym!r}, {master_exch!r})"
+            )
+            if not match:
+                all_ok = False
+
+        print("=" * 65)
+        if all_ok:
+            print("  All tokens verified ✅")
+        else:
+            print("  ⚠️  Fix mismatched tokens in config/watchlist.json")
+            print("  Search the scrip master for your symbol:")
+            print('  python -c "')
+            print('  import httpx, asyncio, json')
+            print('  m = asyncio.run(httpx.AsyncClient().get(')
+            print('      \"https://margincalculator.angelbroking.com/OpenAPI_File/files/OpenAPIScripMaster.json\"))')
+            print('  hits = [x for x in m.json() if \"RELIANCE\" in x.get(\"symbol\",\"\") and x.get(\"exch_seg\")==\"NSE\"]')
+            print('  print(json.dumps(hits[:5], indent=2))')
+            print('  "')
+        print()
+
     # ── WebSocket (Live Ticks) ────────────────────────────────────────────────
 
     def start_websocket(self, watchlist: List[WatchlistItem]):
@@ -214,20 +364,22 @@ class AngelOneService:
             return
 
         token_list = [
-            {"exchangeType": 1, "tokens": [item.token]}  # 1 = NSE
+            {"exchangeType": 1, "tokens": [item.token]}   # 1 = NSE
             for item in watchlist
         ]
 
         correlation_id = "algotrader_stream"
 
+        # Container so nested callbacks can reference the instance
+        sws_container: Dict[str, Any] = {"instance": None}
+
         def on_data(wsapp, message):
             try:
                 if isinstance(message, bytes):
                     import struct
-                    # Parse binary tick format
-                    token = str(int.from_bytes(message[27:31], "little"))
+                    tok = str(int.from_bytes(message[27:31], "little"))
                     ltp = struct.unpack("<f", message[43:47])[0]
-                    self._tick_data[token] = round(ltp, 2)
+                    self._tick_data[tok] = round(ltp, 2)
             except Exception:
                 pass
 
@@ -239,53 +391,64 @@ class AngelOneService:
             logger.warning("WebSocket connection closed.")
             self._ws_active = False
 
-        # Placeholder scope descriptor so the nested functions can capture the reference parent
-        sws_container = {"instance": None}
-
         def on_open(wsapp):
             logger.info("✅ WebSocket connection opened — authenticating channel...")
             self._ws_active = True
-            
-            # Defer subscription payload invocation to bypass proxy handshake collisions
+
+            # Defer subscription by 1 s so the handshake completes first
             def delayed_subscribe():
                 time.sleep(1)
-                logger.info(f"Sending subscription payload for {len(token_list)} tokens...")
+                logger.info(
+                    f"Sending subscription payload for {len(token_list)} tokens..."
+                )
                 try:
-                    if sws_container["instance"]:
-                        sws_container["instance"].subscribe(correlation_id, mode=1, token_list=token_list)
-                        logger.info("✅ Watchlist tokens subscribed successfully.")
-                    else:
-                        logger.error("Subscription aborted: SmartWebSocketV2 instance reference missing.")
+                    sws = sws_container["instance"]
+                    if sws is None:
+                        logger.error(
+                            "Subscription aborted: SmartWebSocketV2 instance not ready."
+                        )
+                        return
+                    sws.subscribe(correlation_id, mode=1, token_list=token_list)
+                    logger.info("✅ Watchlist tokens subscribed successfully.")
                 except Exception as e:
-                    logger.error(f"Subscription injection failed: {e}")
+                    logger.error(f"Subscription failed: {e}")
 
             threading.Thread(target=delayed_subscribe, daemon=True).start()
 
         def _run():
             try:
-                sws_container["instance"] = SmartWebSocketV2(
-                    auth_token=self.jwt_token,
-                    api_key=settings.angel_api_key,
-                    client_code=settings.angel_client_id,
-                    feed_token=self.feed_token,
+                from services.risk_manager import risk_manager  # local import avoids circular
+
+                sws = SmartWebSocketV2(
+                    auth_token  = self.jwt_token,
+                    api_key     = settings.angel_api_key,
+                    client_code = settings.angel_client_id,
+                    feed_token  = self.feed_token,
                 )
-                
-                sws_container["instance"].on_open = on_open
-                sws_container["instance"].on_data = on_data
-                sws_container["instance"].on_error = on_error
-                sws_container["instance"].on_close = on_close
-                
+                sws_container["instance"] = sws
+
+                sws.on_open  = on_open
+                sws.on_data  = on_data
+                sws.on_error = on_error
+                sws.on_close = on_close
+
                 if risk_manager.is_market_open():
-                    logger.info("Market is open. Initializing live tick WebSocket stream...")
-                    sws_container["instance"].connect()
+                    logger.info(
+                        "Market is open. Initializing live tick WebSocket stream..."
+                    )
+                    sws.connect()
                 else:
-                    logger.warning("⚠️ Market is closed. Skipping live WebSocket stream setup.")
-                
+                    logger.warning(
+                        "⚠️  Market is closed. Skipping live WebSocket stream setup."
+                    )
+
             except Exception as e:
                 logger.error(f"WebSocket thread crashed: {e}", exc_info=True)
                 self._ws_active = False
 
-        self._ws_thread = threading.Thread(target=_run, daemon=True, name="WS-Stream")
+        self._ws_thread = threading.Thread(
+            target=_run, daemon=True, name="WS-Stream"
+        )
         self._ws_thread.start()
         logger.info("WebSocket thread started.")
 
@@ -306,27 +469,27 @@ class AngelOneService:
                 f"@ ₹{req.price or 'MARKET'}"
             )
             return OrderResponse(
-                success=True,
-                order_id=f"PAPER-{datetime.now().strftime('%H%M%S%f')[:12]}",
-                message="Paper trade executed (no real order placed)",
-                is_paper=True,
+                success  = True,
+                order_id = f"PAPER-{datetime.now().strftime('%H%M%S%f')[:12]}",
+                message  = "Paper trade executed (no real order placed)",
+                is_paper = True,
             )
 
         # ── Live order ───────────────────────────────────────────────────────
         self.ensure_connected()
         order_params = {
-            "variety": "NORMAL",
-            "tradingsymbol": req.symbol,
-            "symboltoken": req.token,
+            "variety":         "NORMAL",
+            "tradingsymbol":   req.symbol,
+            "symboltoken":     req.token,
             "transactiontype": req.transaction_type,
-            "exchange": req.exchange,
-            "ordertype": req.order_type,
-            "producttype": req.product_type,
-            "duration": "DAY",
-            "price": str(req.price) if req.order_type == "LIMIT" else "0",
-            "squareoff": "0",
-            "stoploss": "0",
-            "quantity": str(req.quantity),
+            "exchange":        req.exchange,
+            "ordertype":       req.order_type,
+            "producttype":     req.product_type,
+            "duration":        "DAY",
+            "price":           str(req.price) if req.order_type == "LIMIT" else "0",
+            "squareoff":       "0",
+            "stoploss":        "0",
+            "quantity":        str(req.quantity),
         }
 
         try:
@@ -338,19 +501,23 @@ class AngelOneService:
                     f"{req.symbol} | OrderID: {order_id}"
                 )
                 return OrderResponse(
-                    success=True,
-                    order_id=order_id,
-                    message=f"Order placed successfully: {order_id}",
-                    is_paper=False,
+                    success  = True,
+                    order_id = order_id,
+                    message  = f"Order placed successfully: {order_id}",
+                    is_paper = False,
                 )
             else:
                 msg = resp.get("message", "Unknown error")
                 logger.error(f"Order failed: {msg}")
-                return OrderResponse(success=False, order_id=None, message=msg, is_paper=False)
+                return OrderResponse(
+                    success=False, order_id=None, message=msg, is_paper=False
+                )
 
         except Exception as e:
             logger.error(f"Order exception for {req.symbol}: {e}", exc_info=True)
-            return OrderResponse(success=False, order_id=None, message=str(e), is_paper=False)
+            return OrderResponse(
+                success=False, order_id=None, message=str(e), is_paper=False
+            )
 
     async def cancel_all_positions(self) -> Dict[str, Any]:
         """
@@ -373,19 +540,21 @@ class AngelOneService:
 
             side = "SELL" if qty > 0 else "BUY"
             req = OrderRequest(
-                symbol=pos["tradingsymbol"],
-                token=pos["symboltoken"],
-                exchange=pos.get("exchange", "NSE"),
-                transaction_type=side,
-                quantity=abs(qty),
-                order_type="MARKET",
-                product_type="INTRADAY",
+                symbol           = pos["tradingsymbol"],
+                token            = pos["symboltoken"],
+                exchange         = pos.get("exchange", "NSE"),
+                transaction_type = side,
+                quantity         = abs(qty),
+                order_type       = "MARKET",
+                product_type     = "INTRADAY",
             )
             result = await self.place_order(req)
             if result.success:
                 closed_count += 1
             else:
-                logger.error(f"Failed to close {pos['tradingsymbol']}: {result.message}")
+                logger.error(
+                    f"Failed to close {pos['tradingsymbol']}: {result.message}"
+                )
 
         logger.warning(f"Kill switch complete. Closed {closed_count} positions.")
         return {"success": True, "closed": closed_count, "is_paper": False}

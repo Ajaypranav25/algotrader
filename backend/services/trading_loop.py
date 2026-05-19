@@ -277,7 +277,11 @@ class TradingLoop:
         db.add(log)
         await db.commit()
 
+    # services/trading_loop.py
     def start(self):
+        if self.is_running:
+            logger.warning("Trading loop already running.")
+            return
         self.is_running = True
         logger.info("▶️  Trading loop started.")
 

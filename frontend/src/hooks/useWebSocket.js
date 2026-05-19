@@ -66,7 +66,7 @@ export default function useWebSocket(url) {
 
             case 'trade_closed':
               setTradeLogs(prev => [
-                `🔴 [TRADE CLOSED] Closed ${data.symbol} Qty: ${data.qty} @ ${data.entry_price} | PnL: ${data.pnl}`, 
+                `🔴 [TRADE CLOSED] ${data.symbol} @ ₹${data.exit_price} | PnL: ${data.pnl} | ${data.reason}`,
                 ...prev.slice(0, 49)
               ]);
               break;

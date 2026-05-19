@@ -71,6 +71,7 @@ class PositionOut(BaseModel):
     stop_loss: float
     target_price: float
     trailing_sl: float
+    signal: str
 
 
 # ── Dashboard State ───────────────────────────────────────────────────────────
