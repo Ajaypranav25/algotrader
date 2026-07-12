@@ -1,0 +1,65 @@
+2026-05-21 13:15:20 | [32mINFO[0m | main                 | ============================================================
+2026-05-21 13:15:20 | [32mINFO[0m | main                 | ============================================================
+2026-05-21 13:15:20 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-21 13:15:20 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-21 13:15:20 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-21 13:15:20 | DEBUG    | angel_one            | Generated TOTP: 577440
+2026-05-21 13:15:21 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-21 13:15:21 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-21 13:15:22 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-21 13:16:12 | [33mWARNING[0m | trading_loop         | Trading loop already running.
+2026-05-21 13:20:21 | DEBUG    | trading_loop         | Processing RELIANCE...
+2026-05-21 13:20:22 | DEBUG    | angel_one            | getCandleData params for RELIANCE: {'exchange': 'NSE', 'symboltoken': '2885', 'fromdate': '2026-05-20 13:20', 'todate': '2026-05-21 13:20', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:20:22 | DEBUG    | angel_one            | getCandleData raw response for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:20:22 | [33mWARNING[0m | trading_loop         | No candle data for RELIANCE.
+2026-05-21 13:20:24 | DEBUG    | trading_loop         | Processing INFY...
+2026-05-21 13:20:24 | DEBUG    | angel_one            | getCandleData params for INFY: {'exchange': 'NSE', 'symboltoken': '1594', 'fromdate': '2026-05-20 13:20', 'todate': '2026-05-21 13:20', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:20:25 | DEBUG    | angel_one            | getCandleData raw response for INFY: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:20:25 | [33mWARNING[0m | trading_loop         | No candle data for INFY.
+2026-05-21 13:20:26 | DEBUG    | trading_loop         | Processing TCS...
+2026-05-21 13:20:27 | DEBUG    | angel_one            | getCandleData params for TCS: {'exchange': 'NSE', 'symboltoken': '11536', 'fromdate': '2026-05-20 13:20', 'todate': '2026-05-21 13:20', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:20:27 | DEBUG    | angel_one            | getCandleData raw response for TCS: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:20:27 | [33mWARNING[0m | trading_loop         | No candle data for TCS.
+2026-05-21 13:20:29 | DEBUG    | trading_loop         | Processing HDFCBANK...
+2026-05-21 13:20:30 | DEBUG    | angel_one            | getCandleData params for HDFCBANK: {'exchange': 'NSE', 'symboltoken': '1333', 'fromdate': '2026-05-20 13:20', 'todate': '2026-05-21 13:20', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:20:30 | DEBUG    | angel_one            | getCandleData raw response for HDFCBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:20:30 | [33mWARNING[0m | trading_loop         | No candle data for HDFCBANK.
+2026-05-21 13:20:32 | DEBUG    | trading_loop         | Processing ICICIBANK...
+2026-05-21 13:20:32 | DEBUG    | angel_one            | getCandleData params for ICICIBANK: {'exchange': 'NSE', 'symboltoken': '4963', 'fromdate': '2026-05-20 13:20', 'todate': '2026-05-21 13:20', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:20:33 | DEBUG    | angel_one            | getCandleData raw response for ICICIBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:20:33 | [33mWARNING[0m | trading_loop         | No candle data for ICICIBANK.
+2026-05-21 13:28:56 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-21 13:29:18 | [33mWARNING[0m | trading_loop         | Trading loop already running.
+2026-05-21 13:30:21 | DEBUG    | trading_loop         | Processing RELIANCE...
+2026-05-21 13:30:22 | DEBUG    | angel_one            | getCandleData params for RELIANCE: {'exchange': 'NSE', 'symboltoken': '2885', 'fromdate': '2026-05-20 13:30', 'todate': '2026-05-21 13:30', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:30:22 | DEBUG    | angel_one            | getCandleData raw response for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:30:22 | [33mWARNING[0m | trading_loop         | No candle data for RELIANCE.
+2026-05-21 13:30:24 | DEBUG    | trading_loop         | Processing INFY...
+2026-05-21 13:30:24 | DEBUG    | angel_one            | getCandleData params for INFY: {'exchange': 'NSE', 'symboltoken': '1594', 'fromdate': '2026-05-20 13:30', 'todate': '2026-05-21 13:30', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:30:25 | DEBUG    | angel_one            | getCandleData raw response for INFY: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:30:25 | [33mWARNING[0m | trading_loop         | No candle data for INFY.
+2026-05-21 13:30:26 | DEBUG    | trading_loop         | Processing TCS...
+2026-05-21 13:30:27 | DEBUG    | angel_one            | getCandleData params for TCS: {'exchange': 'NSE', 'symboltoken': '11536', 'fromdate': '2026-05-20 13:30', 'todate': '2026-05-21 13:30', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:30:27 | DEBUG    | angel_one            | getCandleData raw response for TCS: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:30:27 | [33mWARNING[0m | trading_loop         | No candle data for TCS.
+2026-05-21 13:30:29 | DEBUG    | trading_loop         | Processing HDFCBANK...
+2026-05-21 13:30:30 | DEBUG    | angel_one            | getCandleData params for HDFCBANK: {'exchange': 'NSE', 'symboltoken': '1333', 'fromdate': '2026-05-20 13:30', 'todate': '2026-05-21 13:30', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:30:30 | DEBUG    | angel_one            | getCandleData raw response for HDFCBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:30:30 | [33mWARNING[0m | trading_loop         | No candle data for HDFCBANK.
+2026-05-21 13:30:32 | DEBUG    | trading_loop         | Processing ICICIBANK...
+2026-05-21 13:30:32 | DEBUG    | angel_one            | getCandleData params for ICICIBANK: {'exchange': 'NSE', 'symboltoken': '4963', 'fromdate': '2026-05-20 13:30', 'todate': '2026-05-21 13:30', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:30:33 | DEBUG    | angel_one            | getCandleData raw response for ICICIBANK: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
+2026-05-21 13:30:33 | [33mWARNING[0m | trading_loop         | No candle data for ICICIBANK.
+2026-05-21 13:31:30 | [32mINFO[0m | main                 | Shutting down AlgoTrader...
+2026-05-21 13:31:30 | [32mINFO[0m | main                 | Shutdown complete.
+2026-05-21 13:32:01 | [32mINFO[0m | main                 | ============================================================
+2026-05-21 13:32:01 | [32mINFO[0m | main                 | ============================================================
+2026-05-21 13:32:01 | [32mINFO[0m | main                 | Loaded 5 symbols from watchlist.json
+2026-05-21 13:32:01 | [32mINFO[0m | trading_loop         | Watchlist set: ['RELIANCE', 'INFY', 'TCS', 'HDFCBANK', 'ICICIBANK']
+2026-05-21 13:32:01 | [32mINFO[0m | angel_one            | Initiating Angel One SmartAPI login...
+2026-05-21 13:32:01 | DEBUG    | angel_one            | Generated TOTP: 381310
+2026-05-21 13:32:02 | [32mINFO[0m | angel_one            | WebSocket thread started.
+2026-05-21 13:32:02 | [32mINFO[0m | angel_one            | Market is open. Initializing live tick WebSocket stream...
+2026-05-21 13:32:03 | [32mINFO[0m | angel_one            | Sending subscription payload for 5 tokens...
+2026-05-21 13:33:52 | DEBUG    | angel_one            | getCandleData params for RELIANCE: {'exchange': 'NSE', 'symboltoken': ' 2885', 'fromdate': '2026-05-20 13:33', 'todate': '2026-05-21 13:33', 'interval': 'FIFTEEN_MINUTE'}
+2026-05-21 13:33:53 | DEBUG    | angel_one            | getCandleData raw response for RELIANCE: {'success': False, 'message': 'Invalid Token', 'errorCode': 'AG8001', 'data': ''}
