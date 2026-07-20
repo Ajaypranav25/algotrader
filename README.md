@@ -99,6 +99,4 @@ Open `frontend/index.html` in your browser (or use a local HTTP server).
 
 ---
 
-## Risk Disclaimer
 
-This software is for **educational purposes only**. Algorithmic trading carries substantial financial risk. The developers are not responsible for any financial losses. Always test thoroughly in paper trading mode before using real capital.
