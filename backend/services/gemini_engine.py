@@ -2,7 +2,7 @@
 services/gemini_engine.py — Google Gemini AI analysis engine.
 
 Sends OHLCV candle data to Gemini and receives a strict JSON trading signal.
-Uses the modern google-genai SDK targeting gemini-2.5-flash.
+Uses the modern google-genai SDK targeting gemini-2.5-flash-lite.
 """
 import json
 import time

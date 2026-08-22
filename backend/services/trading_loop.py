@@ -12,7 +12,7 @@ Workflow per symbol:
 """
 import asyncio
 import json
-from datetime import datetime, date
+from datetime import datetime, date, timezone
 from typing import List, Optional, Dict
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -242,7 +242,7 @@ class TradingLoop:
                 exit_price=exit_price,
                 pnl=pnl,
                 status="CLOSED",
-                closed_at=datetime.utcnow(),
+                closed_at=datetime.now(timezone.utc),
             )
         )
         await db.commit()

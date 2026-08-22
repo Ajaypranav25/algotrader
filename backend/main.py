@@ -16,6 +16,7 @@ from pathlib import Path
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from fastapi import FastAPI, WebSocket
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from core.config import get_settings
@@ -133,7 +134,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # Allows your frontend server
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:5173"],  # Allows your frontend server
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -147,7 +148,15 @@ async def ws_handler(websocket: WebSocket):
     # This bypasses strict APIRouter default origin checks for local development
     await websocket_endpoint(websocket)
 
-@app.get("/", tags=["Health"])
+@app.get("/", tags=["Dashboard"], response_class=FileResponse)
+async def serve_dashboard():
+    """Serve the frontend dashboard."""
+    frontend_path = Path(__file__).parent.parent / "frontend" / "index.html"
+    if frontend_path.exists():
+        return FileResponse(str(frontend_path), media_type="text/html")
+    return {"error": "Frontend not found", "expected_path": str(frontend_path)}
+
+@app.get("/api/health", tags=["Health"])
 async def health():
     return {
         "service": "AlgoTrader",
