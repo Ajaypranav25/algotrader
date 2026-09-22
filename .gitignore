@@ -1,6 +1,30 @@
+# Secrets — never commit. (.env.example IS committed.)
 .env
-.env.example
-node_modules/
-dist/
-*.pyc
+.env.*
+!.env.example
+
+# Python
 __pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# Runtime state
+data/
+logs/
+*.db
+*.sqlite3
+*.jsonl
+
+# Node / editors / OS
+node_modules/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

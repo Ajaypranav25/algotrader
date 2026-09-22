@@ -1,0 +1,4 @@
+{
+  "_comment": "NSE trading holidays (YYYY-MM-DD). Update every year from https://www.nseindia.com/resources/exchange-communication-holidays — the engine also refuses to trade on stale prices, but keeping this current avoids pointless retries on holidays.",
+  "holidays": []
+}

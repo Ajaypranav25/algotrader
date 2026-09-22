@@ -1,0 +1,15 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - run: uv venv --python ${{ matrix.python }} && uv pip install -e ".[dev]"
+      - run: uv run --no-sync ruff check src tests
+      - run: uv run --no-sync mypy
+      - run: uv run --no-sync pytest

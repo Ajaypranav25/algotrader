@@ -473,10 +473,30 @@
 
 <!-- ─────────────────────────── JAVASCRIPT ─────────────────────────── -->
 <script>
-// Update them to look exactly like this:
-// Update lines 424 & 425 inside your index.html to include the route version prefixes:
-const API = 'http://localhost:8000/api/v1';
-const WS_URL = 'ws://localhost:8000/api/websocket';
+// Served by the backend → same origin. Opened from disk → assume a local backend.
+const ORIGIN = location.protocol.startsWith('http') ? location.origin : 'http://127.0.0.1:8000';
+const API = `${ORIGIN}/api/v1`;
+const WS_BASE = ORIGIN.replace(/^http/, 'ws') + '/api/websocket';
+
+// ── Auth: API_AUTH_TOKEN from the server's .env, kept in this browser only ──
+const TOKEN_KEY = 'algotrader_api_token';
+function getToken() {
+  let t = null;
+  try { t = localStorage.getItem(TOKEN_KEY); } catch {}
+  if (!t) {
+    t = (window.prompt('AlgoTrader API token (API_AUTH_TOKEN):') || '').trim();
+    if (t) { try { localStorage.setItem(TOKEN_KEY, t); } catch {} }
+  }
+  return t || '';
+}
+function clearToken() { try { localStorage.removeItem(TOKEN_KEY); } catch {} }
+
+async function apiFetch(url, opts = {}) {
+  const headers = { ...(opts.headers || {}), Authorization: `Bearer ${getToken()}` };
+  const r = await fetch(url, { ...opts, headers });
+  if (r.status === 401) { clearToken(); }
+  return r;
+}
 
 // ── State ──────────────────────────────────────────────────────────────────
 const state = {
@@ -506,7 +526,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ── WebSocket ──────────────────────────────────────────────────────────────
 function connectWebSocket() {
   try {
-    state.ws = new WebSocket(WS_URL);
+    state.ws = new WebSocket(`${WS_BASE}?token=${encodeURIComponent(getToken())}`);
 
     state.ws.onopen = () => {
       state.wsConnected = true;
@@ -581,7 +601,7 @@ async function fetchInitialData() {
 
 async function fetchDashboard() {
   try {
-    const r = await fetch(`${API}/dashboard`);
+    const r = await apiFetch(`${API}/dashboard`);
     if (!r.ok) return;
     const d = await r.json();
     updateFromDashboard(d);
@@ -590,7 +610,7 @@ async function fetchDashboard() {
 
 async function fetchGeminiLogs() {
   try {
-    const r = await fetch(`${API}/gemini-logs?limit=30`);
+    const r = await apiFetch(`${API}/gemini-logs?limit=30`);
     if (!r.ok) return;
     const logs = await r.json();
     // Show historical logs on first load
@@ -611,7 +631,7 @@ async function fetchGeminiLogs() {
 
 async function fetchPnlHistory() {
   try {
-    const r = await fetch(`${API}/daily-pnl`);
+    const r = await apiFetch(`${API}/daily-pnl`);
     if (!r.ok) return;
     const records = await r.json();
     updateChart(records.reverse());
@@ -906,7 +926,7 @@ function updateChart(records) {
 // ── Bot Controls ───────────────────────────────────────────────────────────
 async function startBot() {
   try {
-    const r = await fetch(`${API}/bot/start`, { method: 'POST' });
+    const r = await apiFetch(`${API}/bot/start`, { method: 'POST' });
     const d = await r.json();
     if (d.success) {
       state.botRunning = true;
@@ -921,7 +941,7 @@ async function startBot() {
 
 async function stopBot() {
   try {
-    const r = await fetch(`${API}/bot/stop`, { method: 'POST' });
+    const r = await apiFetch(`${API}/bot/stop`, { method: 'POST' });
     const d = await r.json();
     if (d.success) {
       state.botRunning = false;
@@ -943,7 +963,7 @@ async function executeKillSwitch() {
   closeKillModal();
   showToast('🚨 KILL SWITCH EXECUTING…', 'error');
   try {
-    const r = await fetch(`${API}/bot/kill-switch`, { method: 'POST' });
+    const r = await apiFetch(`${API}/bot/kill-switch`, { method: 'POST' });
     const d = await r.json();
     showToast(
       `Kill switch complete. ${d.positions_closed} positions closed${d.is_paper ? ' (paper)' : ''}.`,
